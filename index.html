@@ -1,0 +1,1296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MyStoryBook — Your Child is the Hero</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800;900&family=Nunito:wght@300;400;500;600;700;800;900&family=Noto+Sans+Telugu:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+/* ── RESET & BASE ─────────────────────────────────────────────── */
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --saffron:#FF6B35;
+  --saffron-dark:#E55A24;
+  --saffron-light:#FF8C5A;
+  --teal:#0F6E56;
+  --teal-dark:#085041;
+  --teal-light:#1D9E75;
+  --gold:#FAC775;
+  --gold-dark:#EF9F27;
+  --navy:#0A1628;
+  --navy-mid:#132236;
+  --navy-light:#1E3352;
+  --cream:#FFFBF5;
+  --cream-dark:#FFF3E0;
+  --text:#1A1A2E;
+  --text-mid:#444460;
+  --text-soft:#6B6B88;
+  --white:#FFFFFF;
+  --border:rgba(255,107,53,0.15);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Nunito',sans-serif;color:var(--text);background:var(--cream);overflow-x:hidden}
+
+/* ── TYPOGRAPHY ──────────────────────────────────────────────── */
+h1,h2,h3,h4{font-family:'Baloo 2',sans-serif}
+.telugu{font-family:'Noto Sans Telugu',sans-serif}
+
+/* ── NAVBAR ──────────────────────────────────────────────────── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 5%;height:68px;
+  background:rgba(255,251,245,0.92);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,107,53,0.12);
+  transition:all 0.3s ease;
+}
+.nav-logo{display:flex;align-items:center;gap:10px}
+.logo-icon{
+  width:40px;height:40px;border-radius:10px;
+  background:linear-gradient(135deg,var(--saffron),var(--gold-dark));
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;box-shadow:0 4px 12px rgba(255,107,53,0.3);
+}
+.logo-text{font-family:'Baloo 2',sans-serif;font-size:22px;font-weight:800;color:var(--navy)}
+.logo-text span{color:var(--saffron)}
+.nav-links{display:flex;align-items:center;gap:32px}
+.nav-links a{
+  text-decoration:none;font-size:14px;font-weight:600;
+  color:var(--text-mid);transition:color 0.2s;letter-spacing:0.3px;
+}
+.nav-links a:hover{color:var(--saffron)}
+.nav-cta{
+  background:var(--saffron);color:#fff;padding:10px 22px;
+  border-radius:24px;font-size:14px;font-weight:700;
+  text-decoration:none;transition:all 0.2s;
+  box-shadow:0 4px 14px rgba(255,107,53,0.35);
+  white-space:nowrap;
+}
+.nav-cta:hover{background:var(--saffron-dark);transform:translateY(-1px);box-shadow:0 6px 18px rgba(255,107,53,0.45)}
+.nav-lang{
+  display:flex;align-items:center;gap:6px;
+  font-size:12px;font-weight:700;color:var(--teal);
+  border:1.5px solid var(--teal);border-radius:16px;padding:4px 10px;cursor:pointer;
+  transition:all 0.2s;
+}
+.nav-lang:hover{background:var(--teal);color:#fff}
+
+/* ── HERO ────────────────────────────────────────────────────── */
+.hero{
+  min-height:100vh;display:flex;align-items:center;
+  padding:100px 5% 60px;position:relative;overflow:hidden;
+  background:linear-gradient(160deg,#FFFBF5 0%,#FFF3E0 40%,#FFF8F0 70%,#F0FAF5 100%);
+}
+.hero-bg-pattern{
+  position:absolute;inset:0;pointer-events:none;z-index:0;
+  background-image:
+    radial-gradient(circle at 20% 20%,rgba(255,107,53,0.08) 0%,transparent 50%),
+    radial-gradient(circle at 80% 80%,rgba(15,110,86,0.07) 0%,transparent 50%),
+    radial-gradient(circle at 60% 20%,rgba(250,199,117,0.1) 0%,transparent 40%);
+}
+/* Floating letters decoration */
+.hero-floats{position:absolute;inset:0;pointer-events:none;z-index:0}
+.float-letter{
+  position:absolute;font-family:'Baloo 2',sans-serif;font-weight:900;
+  opacity:0.06;color:var(--saffron);animation:floatUp var(--d,8s) ease-in-out infinite alternate;
+  animation-delay:var(--dl,0s);
+}
+@keyframes floatUp{0%{transform:translateY(0) rotate(-5deg)}100%{transform:translateY(-18px) rotate(5deg)}}
+.hero-inner{
+  display:grid;grid-template-columns:1fr 1fr;gap:60px;
+  align-items:center;max-width:1200px;margin:0 auto;width:100%;position:relative;z-index:1;
+}
+.hero-left{max-width:560px}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:7px;
+  background:rgba(255,107,53,0.1);border:1.5px solid rgba(255,107,53,0.25);
+  border-radius:20px;padding:6px 14px;margin-bottom:22px;
+}
+.hero-badge-dot{width:7px;height:7px;border-radius:50%;background:var(--saffron);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.6;transform:scale(1.4)}}
+.hero-badge span{font-size:12px;font-weight:700;color:var(--saffron);letter-spacing:0.5px}
+h1.hero-title{
+  font-size:clamp(38px,4.5vw,58px);font-weight:900;line-height:1.1;
+  color:var(--navy);margin-bottom:10px;letter-spacing:-1.5px;
+}
+h1.hero-title .highlight{
+  color:var(--saffron);position:relative;
+  background:linear-gradient(135deg,var(--saffron),var(--gold-dark));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+h1.hero-title .teal-word{
+  color:var(--teal);
+  background:linear-gradient(135deg,var(--teal),var(--teal-light));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.hero-telugu{
+  font-size:16px;color:var(--teal);margin-bottom:18px;
+  font-weight:600;opacity:0.75;letter-spacing:0.2px;
+}
+.hero-desc{
+  font-size:17px;color:var(--text-mid);line-height:1.75;margin-bottom:32px;
+  max-width:480px;font-weight:500;
+}
+.hero-desc strong{color:var(--navy);font-weight:700}
+.hero-actions{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-bottom:40px}
+.btn-primary{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--saffron);color:#fff;padding:14px 28px;
+  border-radius:28px;font-size:15px;font-weight:800;
+  text-decoration:none;transition:all 0.25s;
+  box-shadow:0 6px 20px rgba(255,107,53,0.4);
+  border:none;cursor:pointer;letter-spacing:0.2px;
+}
+.btn-primary:hover{background:var(--saffron-dark);transform:translateY(-2px);box-shadow:0 10px 28px rgba(255,107,53,0.5)}
+.btn-primary .arrow{transition:transform 0.2s}
+.btn-primary:hover .arrow{transform:translateX(4px)}
+.btn-secondary{
+  display:inline-flex;align-items:center;gap:8px;
+  background:transparent;color:var(--teal);padding:13px 26px;
+  border-radius:28px;font-size:15px;font-weight:700;
+  text-decoration:none;transition:all 0.25s;
+  border:2px solid var(--teal);cursor:pointer;
+}
+.btn-secondary:hover{background:var(--teal);color:#fff;transform:translateY(-2px)}
+.hero-stats{display:flex;gap:28px;flex-wrap:wrap}
+.stat-item{display:flex;flex-direction:column}
+.stat-num{font-family:'Baloo 2',sans-serif;font-size:26px;font-weight:900;color:var(--navy)}
+.stat-label{font-size:11px;font-weight:600;color:var(--text-soft);letter-spacing:0.5px;text-transform:uppercase}
+
+/* Hero right — book mockup stack */
+.hero-right{position:relative;display:flex;justify-content:center;align-items:center;height:500px}
+.book-stack{position:relative;width:380px;height:460px}
+.book-card{
+  position:absolute;border-radius:16px;overflow:hidden;
+  box-shadow:0 20px 60px rgba(10,22,40,0.2);
+  transition:transform 0.3s ease;
+}
+.book-card:nth-child(1){width:240px;height:300px;top:80px;left:20px;transform:rotate(-8deg);z-index:1}
+.book-card:nth-child(2){width:260px;height:320px;top:40px;left:80px;transform:rotate(-2deg);z-index:2}
+.book-card:nth-child(3){width:250px;height:310px;top:60px;left:140px;transform:rotate(5deg);z-index:3;box-shadow:0 24px 64px rgba(255,107,53,0.25)}
+.book-card:hover{transform:rotate(0deg) scale(1.04) translateY(-6px)!important;z-index:10!important}
+.book-inner{
+  width:100%;height:100%;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;padding:20px;
+  position:relative;overflow:hidden;
+}
+.book-inner::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 60% 30%,rgba(255,255,255,0.15),transparent 70%);
+}
+.book-emoji{font-size:52px;margin-bottom:8px;filter:drop-shadow(0 4px 8px rgba(0,0,0,0.2))}
+.book-title{font-family:'Baloo 2',sans-serif;font-size:16px;font-weight:800;color:#fff;text-align:center;text-shadow:0 2px 6px rgba(0,0,0,0.3)}
+.book-sub{font-size:11px;color:rgba(255,255,255,0.8);text-align:center;margin-top:4px;font-weight:600}
+.book-name-strip{
+  position:absolute;bottom:0;left:0;right:0;height:36px;
+  background:rgba(0,0,0,0.35);backdrop-filter:blur(4px);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Baloo 2',sans-serif;font-size:13px;font-weight:800;color:var(--gold);
+  letter-spacing:1px;
+}
+/* Floating badge on hero */
+.hero-float-badge{
+  position:absolute;background:white;border-radius:12px;padding:10px 14px;
+  box-shadow:0 8px 24px rgba(10,22,40,0.12);
+  display:flex;align-items:center;gap:8px;z-index:10;
+  animation:floatBadge 3s ease-in-out infinite alternate;
+}
+@keyframes floatBadge{0%{transform:translateY(0)}100%{transform:translateY(-8px)}}
+.hfb-1{top:10px;right:10px}
+.hfb-2{bottom:30px;left:0px;animation-delay:1.5s}
+.hfb-icon{font-size:22px}
+.hfb-text{font-size:11px;font-weight:700;color:var(--navy);line-height:1.3}
+.hfb-text span{display:block;color:var(--text-soft);font-weight:500}
+
+/* ── HOW IT WORKS ─────────────────────────────────────────────── */
+.section{padding:90px 5%}
+.section-label{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;
+  color:var(--saffron);margin-bottom:14px;
+}
+.section-label::before{content:'';width:24px;height:2px;background:var(--saffron);border-radius:1px}
+.section-title{
+  font-family:'Baloo 2',sans-serif;font-size:clamp(28px,3.5vw,42px);
+  font-weight:900;color:var(--navy);letter-spacing:-1px;margin-bottom:10px;line-height:1.15;
+}
+.section-title .accent{color:var(--saffron)}
+.section-sub{font-size:16px;color:var(--text-soft);max-width:520px;line-height:1.7;font-weight:500}
+.section-header{max-width:1200px;margin:0 auto 56px;text-align:center}
+.section-header .section-sub{margin:0 auto}
+
+.how-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:2px;
+  max-width:1200px;margin:0 auto;
+  background:var(--border);border-radius:20px;overflow:hidden;
+  border:1.5px solid rgba(255,107,53,0.15);
+}
+.how-card{
+  background:var(--cream);padding:40px 32px;position:relative;
+  transition:background 0.3s;
+}
+.how-card:hover{background:#fff}
+.how-num{
+  font-family:'Baloo 2',sans-serif;font-size:64px;font-weight:900;
+  line-height:1;margin-bottom:16px;
+  background:linear-gradient(135deg,rgba(255,107,53,0.15),rgba(255,107,53,0.05));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  color:rgba(255,107,53,0.2);
+}
+.how-icon{
+  width:52px;height:52px;border-radius:14px;margin-bottom:16px;
+  display:flex;align-items:center;justify-content:center;font-size:26px;
+  background:linear-gradient(135deg,var(--saffron),var(--gold-dark));
+  box-shadow:0 6px 16px rgba(255,107,53,0.3);
+}
+.how-card h3{font-size:20px;font-weight:800;color:var(--navy);margin-bottom:10px;letter-spacing:-0.3px}
+.how-card p{font-size:14px;color:var(--text-soft);line-height:1.7;font-weight:500}
+.how-arrow{
+  position:absolute;right:-14px;top:50%;transform:translateY(-50%);
+  width:28px;height:28px;background:var(--saffron);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;z-index:2;
+  color:white;font-size:14px;font-weight:700;
+}
+.how-card:last-child .how-arrow{display:none}
+
+/* ── THEMES SECTION ───────────────────────────────────────────── */
+.themes-section{
+  background:var(--navy);padding:90px 5%;position:relative;overflow:hidden;
+}
+.themes-section::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 20% 50%,rgba(255,107,53,0.08),transparent 60%),
+             radial-gradient(ellipse at 80% 50%,rgba(15,110,86,0.08),transparent 60%);
+  pointer-events:none;
+}
+.themes-section .section-label{color:var(--gold)}
+.themes-section .section-label::before{background:var(--gold)}
+.themes-section .section-title{color:var(--white)}
+.themes-section .section-sub{color:rgba(255,255,255,0.55)}
+.themes-section .section-header{position:relative;z-index:1}
+
+.category-tabs{
+  display:flex;gap:8px;justify-content:center;flex-wrap:wrap;
+  margin-bottom:40px;position:relative;z-index:1;
+}
+.cat-tab{
+  padding:8px 18px;border-radius:20px;font-size:13px;font-weight:700;
+  border:1.5px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.55);
+  cursor:pointer;transition:all 0.2s;background:transparent;
+}
+.cat-tab.active,.cat-tab:hover{
+  background:var(--saffron);border-color:var(--saffron);color:#fff;
+  box-shadow:0 4px 14px rgba(255,107,53,0.4);
+}
+.themes-grid{
+  display:grid;grid-template-columns:repeat(6,1fr);gap:14px;
+  max-width:1200px;margin:0 auto;position:relative;z-index:1;
+}
+.theme-card{
+  border-radius:16px;overflow:hidden;cursor:pointer;
+  border:1.5px solid rgba(255,255,255,0.08);
+  transition:all 0.3s ease;position:relative;group:true;
+}
+.theme-card:hover{transform:translateY(-6px);border-color:var(--saffron);box-shadow:0 16px 40px rgba(255,107,53,0.25)}
+.theme-card-inner{
+  padding:22px 16px 18px;display:flex;flex-direction:column;align-items:center;
+  text-align:center;min-height:150px;position:relative;overflow:hidden;
+}
+.theme-card-inner::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 40%,rgba(0,0,0,0.35) 100%);
+}
+.theme-emoji{font-size:32px;margin-bottom:8px;position:relative;z-index:1;filter:drop-shadow(0 3px 6px rgba(0,0,0,0.3))}
+.theme-name{font-family:'Baloo 2',sans-serif;font-size:12px;font-weight:800;color:#fff;position:relative;z-index:1;line-height:1.2}
+.theme-te{font-family:'Noto Sans Telugu',sans-serif;font-size:9px;color:rgba(255,255,255,0.65);margin-top:2px;position:relative;z-index:1}
+.theme-age{
+  font-size:9px;font-weight:700;padding:2px 7px;border-radius:8px;
+  background:rgba(255,255,255,0.2);color:#fff;margin-top:5px;
+  position:relative;z-index:1;
+}
+.themes-cta{text-align:center;margin-top:36px;position:relative;z-index:1}
+.btn-outline-white{
+  display:inline-flex;align-items:center;gap:8px;
+  border:2px solid rgba(255,255,255,0.3);color:#fff;padding:12px 28px;
+  border-radius:28px;font-size:14px;font-weight:700;text-decoration:none;
+  transition:all 0.25s;
+}
+.btn-outline-white:hover{background:rgba(255,255,255,0.1);border-color:#fff}
+
+/* ── WHY MYSTORYBOOK ──────────────────────────────────────────── */
+.why-section{background:var(--cream);padding:90px 5%}
+.why-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:50px;
+  max-width:1200px;margin:0 auto;align-items:center;
+}
+.why-left .section-label,.why-left .section-title,.why-left .section-sub{text-align:left}
+.why-left .section-sub{margin-bottom:36px}
+.why-points{display:flex;flex-direction:column;gap:20px}
+.why-point{display:flex;align-items:flex-start;gap:16px}
+.why-icon{
+  width:44px;height:44px;border-radius:12px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-size:20px;
+}
+.wi-saffron{background:rgba(255,107,53,0.12)}
+.wi-teal{background:rgba(15,110,86,0.1)}
+.wi-gold{background:rgba(250,199,117,0.2)}
+.why-point h4{font-size:15px;font-weight:800;color:var(--navy);margin-bottom:4px}
+.why-point p{font-size:13px;color:var(--text-soft);line-height:1.6;font-weight:500}
+.why-right{display:flex;flex-direction:column;gap:16px}
+.proof-card{
+  background:#fff;border-radius:16px;padding:20px 22px;
+  border:1.5px solid rgba(255,107,53,0.1);
+  box-shadow:0 4px 16px rgba(10,22,40,0.05);
+  transition:all 0.25s;
+}
+.proof-card:hover{transform:translateX(4px);border-color:var(--saffron);box-shadow:0 8px 24px rgba(255,107,53,0.12)}
+.proof-top{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.proof-num{font-family:'Baloo 2',sans-serif;font-size:32px;font-weight:900;color:var(--saffron)}
+.proof-label{font-size:13px;font-weight:700;color:var(--navy)}
+.proof-label span{display:block;font-size:11px;font-weight:500;color:var(--text-soft)}
+.proof-bar{height:4px;background:rgba(255,107,53,0.1);border-radius:2px;overflow:hidden}
+.proof-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--saffron),var(--gold))}
+.moat-badge{
+  background:linear-gradient(135deg,var(--teal),var(--teal-light));
+  border-radius:16px;padding:20px 22px;color:#fff;
+}
+.moat-badge h4{font-family:'Baloo 2',sans-serif;font-size:16px;font-weight:800;margin-bottom:6px}
+.moat-badge p{font-size:13px;opacity:0.8;line-height:1.6}
+
+/* ── BOOK PREVIEW ─────────────────────────────────────────────── */
+.preview-section{
+  background:linear-gradient(160deg,var(--navy) 0%,#0F2040 50%,#0A1628 100%);
+  padding:90px 5%;position:relative;overflow:hidden;
+}
+.preview-section::before{
+  content:'';position:absolute;top:-40%;left:-20%;width:80%;height:180%;
+  background:radial-gradient(ellipse,rgba(255,107,53,0.07),transparent 70%);
+  pointer-events:none;
+}
+.preview-section .section-title{color:#fff}
+.preview-section .section-sub{color:rgba(255,255,255,0.5)}
+.pages-showcase{
+  display:flex;gap:16px;max-width:1200px;margin:0 auto;
+  overflow-x:auto;padding:10px 0 20px;
+  scrollbar-width:thin;scrollbar-color:rgba(255,107,53,0.3) transparent;
+}
+.page-thumb{
+  flex-shrink:0;width:200px;border-radius:12px;overflow:hidden;
+  border:1.5px solid rgba(255,255,255,0.1);transition:all 0.3s;
+  cursor:pointer;position:relative;
+}
+.page-thumb:hover{transform:scale(1.04);border-color:var(--saffron);box-shadow:0 12px 30px rgba(255,107,53,0.2)}
+.page-thumb-inner{
+  height:140px;display:flex;align-items:center;justify-content:center;
+  flex-direction:column;gap:6px;padding:12px;
+}
+.pt-emoji{font-size:28px}
+.pt-label{font-size:11px;font-weight:700;color:#fff;text-align:center}
+.pt-sub{font-size:9px;color:rgba(255,255,255,0.55);text-align:center}
+.page-strip-en{
+  height:22px;display:flex;align-items:center;justify-content:center;
+  background:rgba(255,255,255,0.08);font-size:8px;font-weight:700;color:var(--gold);
+  padding:0 8px;letter-spacing:0.3px;
+}
+.page-strip-te{
+  height:18px;display:flex;align-items:center;justify-content:center;
+  background:rgba(15,62,52,0.5);font-family:'Noto Sans Telugu',sans-serif;
+  font-size:7px;color:rgba(127,212,168,0.8);
+}
+
+/* ── TESTIMONIALS ─────────────────────────────────────────────── */
+.testimonials{background:var(--cream-dark);padding:90px 5%}
+.testi-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:20px;
+  max-width:1200px;margin:0 auto;
+}
+.testi-card{
+  background:#fff;border-radius:16px;padding:28px 24px;
+  border:1.5px solid rgba(255,107,53,0.08);
+  box-shadow:0 4px 16px rgba(10,22,40,0.05);
+  transition:all 0.25s;position:relative;
+}
+.testi-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(10,22,40,0.1)}
+.testi-card::before{
+  content:'"';position:absolute;top:16px;right:20px;
+  font-family:'Baloo 2',sans-serif;font-size:60px;font-weight:900;
+  color:rgba(255,107,53,0.08);line-height:1;
+}
+.stars{color:var(--gold-dark);font-size:14px;margin-bottom:12px;letter-spacing:2px}
+.testi-text{
+  font-size:14px;color:var(--text-mid);line-height:1.75;margin-bottom:18px;
+  font-weight:500;font-style:italic;
+}
+.testi-author{display:flex;align-items:center;gap:12px}
+.testi-avatar{
+  width:40px;height:40px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Baloo 2',sans-serif;font-size:16px;font-weight:800;color:#fff;
+}
+.testi-name{font-size:13px;font-weight:800;color:var(--navy)}
+.testi-role{font-size:11px;color:var(--text-soft);font-weight:500}
+
+/* ── PRICING ──────────────────────────────────────────────────── */
+.pricing{background:var(--cream);padding:90px 5%}
+.pricing-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:20px;
+  max-width:1000px;margin:0 auto;
+}
+.price-card{
+  background:#fff;border-radius:20px;padding:32px 26px;
+  border:1.5px solid rgba(255,107,53,0.12);
+  transition:all 0.3s;position:relative;overflow:hidden;
+}
+.price-card.featured{
+  border:2px solid var(--saffron);
+  box-shadow:0 12px 40px rgba(255,107,53,0.2);
+}
+.price-card.featured::before{
+  content:'Most Popular';position:absolute;top:0;left:50%;transform:translateX(-50%);
+  background:var(--saffron);color:#fff;font-size:10px;font-weight:800;
+  padding:4px 16px;border-radius:0 0 12px 12px;letter-spacing:1px;
+}
+.price-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(10,22,40,0.1)}
+.price-title{font-family:'Baloo 2',sans-serif;font-size:18px;font-weight:800;color:var(--navy);margin-bottom:6px}
+.price-desc{font-size:12px;color:var(--text-soft);margin-bottom:20px;font-weight:500}
+.price-amount{display:flex;align-items:baseline;gap:4px;margin-bottom:6px}
+.price-rs{font-size:20px;font-weight:700;color:var(--text-mid)}
+.price-num{font-family:'Baloo 2',sans-serif;font-size:44px;font-weight:900;color:var(--navy);line-height:1}
+.price-per{font-size:13px;color:var(--text-soft);margin-bottom:24px;font-weight:500}
+.price-original{font-size:13px;color:var(--text-soft);text-decoration:line-through;margin-bottom:4px}
+.price-save{font-size:11px;font-weight:700;color:var(--teal);background:rgba(15,110,86,0.1);padding:2px 8px;border-radius:8px;display:inline-block;margin-bottom:20px}
+.price-features{list-style:none;margin-bottom:28px;display:flex;flex-direction:column;gap:10px}
+.price-features li{display:flex;align-items:center;gap:9px;font-size:13px;color:var(--text-mid);font-weight:500}
+.price-features li::before{
+  content:'';width:16px;height:16px;border-radius:50%;flex-shrink:0;
+  background:rgba(15,110,86,0.1);border:1.5px solid var(--teal);
+  display:flex;align-items:center;justify-content:center;
+  background-image:url("data:image/svg+xml,%3Csvg width='10' height='8' viewBox='0 0 10 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 4L3.5 6.5L9 1' stroke='%230F6E56' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:center;
+}
+.btn-price{
+  width:100%;padding:13px;border-radius:24px;font-size:14px;font-weight:800;
+  border:none;cursor:pointer;transition:all 0.25s;text-align:center;
+  display:block;text-decoration:none;
+}
+.btn-price-primary{background:var(--saffron);color:#fff;box-shadow:0 6px 18px rgba(255,107,53,0.35)}
+.btn-price-primary:hover{background:var(--saffron-dark);transform:translateY(-2px)}
+.btn-price-secondary{background:transparent;color:var(--saffron);border:2px solid var(--saffron)}
+.btn-price-secondary:hover{background:var(--saffron);color:#fff}
+.price-addon{
+  max-width:700px;margin:40px auto 0;
+  background:rgba(15,110,86,0.06);border:1px solid rgba(15,110,86,0.15);
+  border-radius:16px;padding:20px 28px;
+  display:grid;grid-template-columns:1fr 1fr;gap:16px;
+}
+.addon-title{grid-column:1/-1;font-family:'Baloo 2',sans-serif;font-size:14px;font-weight:800;color:var(--teal);margin-bottom:0}
+.addon-item{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text-mid);font-weight:500}
+.addon-price{font-weight:800;color:var(--navy);margin-left:auto}
+
+/* ── FAQ ──────────────────────────────────────────────────────── */
+.faq{background:var(--cream-dark);padding:90px 5%}
+.faq-list{max-width:720px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
+.faq-item{
+  background:#fff;border-radius:14px;overflow:hidden;
+  border:1.5px solid rgba(255,107,53,0.1);
+}
+.faq-q{
+  padding:18px 22px;display:flex;align-items:center;justify-content:space-between;
+  cursor:pointer;font-size:14px;font-weight:700;color:var(--navy);gap:16px;
+}
+.faq-q:hover{color:var(--saffron)}
+.faq-toggle{
+  width:24px;height:24px;border-radius:50%;background:rgba(255,107,53,0.1);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--saffron);font-size:16px;flex-shrink:0;
+  transition:transform 0.2s;font-weight:700;
+}
+.faq-a{
+  padding:0 22px;max-height:0;overflow:hidden;
+  transition:max-height 0.3s ease,padding 0.3s ease;
+  font-size:13px;color:var(--text-soft);line-height:1.7;font-weight:500;
+}
+.faq-item.open .faq-a{max-height:200px;padding:0 22px 18px}
+.faq-item.open .faq-toggle{transform:rotate(45deg);background:var(--saffron);color:#fff}
+
+/* ── CTA BANNER ───────────────────────────────────────────────── */
+.cta-banner{
+  background:linear-gradient(135deg,var(--saffron) 0%,var(--gold-dark) 50%,var(--saffron-light) 100%);
+  padding:80px 5%;text-align:center;position:relative;overflow:hidden;
+}
+.cta-banner::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 50% 50%,rgba(255,255,255,0.15),transparent 70%);
+}
+.cta-banner h2{
+  font-family:'Baloo 2',sans-serif;font-size:clamp(28px,4vw,46px);
+  font-weight:900;color:#fff;margin-bottom:12px;
+  text-shadow:0 2px 12px rgba(0,0,0,0.15);position:relative;z-index:1;letter-spacing:-0.5px;
+}
+.cta-banner p{font-size:17px;color:rgba(255,255,255,0.85);margin-bottom:32px;font-weight:500;position:relative;z-index:1}
+.cta-banner .btn-white{
+  display:inline-flex;align-items:center;gap:8px;
+  background:#fff;color:var(--saffron);padding:15px 36px;
+  border-radius:32px;font-size:16px;font-weight:800;text-decoration:none;
+  box-shadow:0 8px 24px rgba(0,0,0,0.15);transition:all 0.25s;position:relative;z-index:1;
+}
+.cta-banner .btn-white:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(0,0,0,0.2)}
+.cta-telugu{
+  font-family:'Noto Sans Telugu',sans-serif;font-size:14px;
+  color:rgba(255,255,255,0.7);margin-top:14px;position:relative;z-index:1;
+}
+
+/* ── FOOTER ───────────────────────────────────────────────────── */
+footer{
+  background:var(--navy);padding:60px 5% 32px;
+  position:relative;overflow:hidden;
+}
+footer::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--saffron),transparent);
+}
+.footer-grid{
+  display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;
+  max-width:1200px;margin:0 auto 48px;
+}
+.footer-brand .logo-text{color:#fff}
+.footer-brand p{font-size:13px;color:rgba(255,255,255,0.45);line-height:1.7;margin-top:12px;max-width:260px;font-weight:500}
+.footer-social{display:flex;gap:10px;margin-top:18px}
+.social-btn{
+  width:34px;height:34px;border-radius:8px;
+  background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;cursor:pointer;transition:all 0.2s;text-decoration:none;color:#fff;
+}
+.social-btn:hover{background:var(--saffron);border-color:var(--saffron)}
+.footer-col h4{font-family:'Baloo 2',sans-serif;font-size:13px;font-weight:800;color:rgba(255,255,255,0.9);margin-bottom:16px;letter-spacing:0.5px;text-transform:uppercase}
+.footer-col a{display:block;font-size:13px;color:rgba(255,255,255,0.45);text-decoration:none;margin-bottom:9px;transition:color 0.2s;font-weight:500}
+.footer-col a:hover{color:var(--gold)}
+.footer-bottom{
+  max-width:1200px;margin:0 auto;padding-top:24px;
+  border-top:1px solid rgba(255,255,255,0.08);
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;
+}
+.footer-bottom p{font-size:12px;color:rgba(255,255,255,0.3);font-weight:500}
+.footer-bottom .telugu-pride{
+  font-family:'Noto Sans Telugu',sans-serif;font-size:11px;
+  color:rgba(250,199,117,0.5);
+}
+.made-badge{
+  display:flex;align-items:center;gap:6px;
+  font-size:12px;color:rgba(255,255,255,0.3);font-weight:500;
+}
+.made-badge span{color:var(--saffron)}
+
+/* ── SCROLL ANIMATIONS ───────────────────────────────────────── */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.6s ease,transform 0.6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:0.1s}
+.reveal-delay-2{transition-delay:0.2s}
+.reveal-delay-3{transition-delay:0.3s}
+.reveal-delay-4{transition-delay:0.4s}
+.reveal-delay-5{transition-delay:0.5s}
+
+/* ── RESPONSIVE ──────────────────────────────────────────────── */
+@media(max-width:968px){
+  .hero-inner{grid-template-columns:1fr;text-align:center}
+  .hero-right{display:none}
+  .hero-stats{justify-content:center}
+  .hero-actions{justify-content:center}
+  .hero-left{max-width:100%}
+  .hero-desc{margin:0 auto 32px}
+  .how-grid{grid-template-columns:1fr}
+  .themes-grid{grid-template-columns:repeat(3,1fr)}
+  .why-grid{grid-template-columns:1fr}
+  .testi-grid{grid-template-columns:1fr}
+  .pricing-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .nav-links{display:none}
+}
+@media(max-width:580px){
+  .themes-grid{grid-template-columns:repeat(2,1fr)}
+  .footer-grid{grid-template-columns:1fr}
+  .price-addon{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- ── NAVBAR ────────────────────────────────────────────────── -->
+<nav id="navbar">
+  <div class="nav-logo">
+    <div class="logo-icon">📖</div>
+    <span class="logo-text">My<span>Story</span>Book</span>
+  </div>
+  <div class="nav-links">
+    <a href="#themes">Themes</a>
+    <a href="#how">How it works</a>
+    <a href="#why">Why us</a>
+    <a href="#pricing">Pricing</a>
+    <a href="/about">About</a>
+  </div>
+  <div style="display:flex;align-items:center;gap:12px">
+    <div class="nav-lang">🇮🇳 EN | తె</div>
+    <a href="/login" style="font-size:14px;font-weight:700;color:var(--text-mid);text-decoration:none">Login</a>
+    <a href="/themes" class="nav-cta">Create a Book ✨</a>
+  </div>
+</nav>
+
+<!-- ── HERO ──────────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-bg-pattern"></div>
+  <div class="hero-floats">
+    <span class="float-letter" style="top:15%;left:8%;font-size:80px;--d:7s;--dl:0s">A</span>
+    <span class="float-letter" style="top:70%;left:4%;font-size:60px;--d:9s;--dl:1s">🌟</span>
+    <span class="float-letter" style="top:20%;right:5%;font-size:70px;--d:8s;--dl:2s">B</span>
+    <span class="float-letter" style="top:75%;right:8%;font-size:50px;--d:6s;--dl:0.5s">✨</span>
+    <span class="float-letter" style="top:45%;left:2%;font-size:40px;--d:10s;--dl:3s;color:var(--teal)">అ</span>
+    <span class="float-letter" style="top:50%;right:3%;font-size:45px;--d:11s;--dl:1.5s;color:var(--teal)">ఆ</span>
+  </div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-badge">
+        <div class="hero-badge-dot"></div>
+        <span>India's first Telugu + English personalised storybook</span>
+      </div>
+      <h1 class="hero-title">
+        Your child is<br>
+        the <span class="highlight">Hero</span> of<br>
+        every <span class="teal-word">Story</span>
+      </h1>
+      <p class="hero-telugu telugu">మీ పిల్లలే ప్రతి కథలో హీరో! · Your child is the star!</p>
+      <p class="hero-desc">
+        Upload your child's photo, choose a theme, and we create a
+        <strong>fully personalised, printed storybook</strong> — in English &amp; Telugu —
+        delivered straight to your home. 22 magical themes to choose from.
+      </p>
+      <div class="hero-actions">
+        <a href="/themes" class="btn-primary">
+          Create Your Book <span class="arrow">→</span>
+        </a>
+        <a href="#how" class="btn-secondary">
+          ▶ See how it works
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <span class="stat-num">22</span>
+          <span class="stat-label">Themes</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">574</span>
+          <span class="stat-label">Pages designed</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">EN+తె</span>
+          <span class="stat-label">Bilingual</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">5–7</span>
+          <span class="stat-label">Day delivery</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="book-stack">
+        <!-- Book 1 — Space -->
+        <div class="book-card">
+          <div class="book-inner" style="background:linear-gradient(135deg,#07091A,#0D1B3E)">
+            <div class="book-emoji">🚀</div>
+            <div class="book-title">Space Mission!</div>
+            <div class="book-sub">అంతరిక్ష సాహసం</div>
+          </div>
+          <div class="book-name-strip">ARJUN'S ADVENTURE</div>
+        </div>
+        <!-- Book 2 — Festivals -->
+        <div class="book-card">
+          <div class="book-inner" style="background:linear-gradient(135deg,#FF6B35,#FF8C00)">
+            <div class="book-emoji">🪔</div>
+            <div class="book-title">Festivals of India!</div>
+            <div class="book-sub">భారత పండుగలు</div>
+          </div>
+          <div class="book-name-strip">MEERA'S STORY</div>
+        </div>
+        <!-- Book 3 — Alphabets (front) -->
+        <div class="book-card">
+          <div class="book-inner" style="background:linear-gradient(135deg,#1A237E,#3C3489)">
+            <div class="book-emoji">📚</div>
+            <div class="book-title">A to Z Adventure!</div>
+            <div class="book-sub">అక్షరమాల సాహసం</div>
+          </div>
+          <div class="book-name-strip">PRIYA'S BOOK</div>
+        </div>
+        <!-- Floating badges -->
+        <div class="hero-float-badge hfb-1">
+          <div class="hfb-icon">📸</div>
+          <div class="hfb-text">Upload 1 photo<span>Child becomes the hero</span></div>
+        </div>
+        <div class="hero-float-badge hfb-2">
+          <div class="hfb-icon">🖨️</div>
+          <div class="hfb-text">Printed &amp; delivered<span>Anywhere in India</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── HOW IT WORKS ───────────────────────────────────────────── -->
+<section class="section" id="how" style="background:#fff">
+  <div class="section-header reveal">
+    <div class="section-label">Simple process</div>
+    <h2 class="section-title">From photo to <span class="accent">printed book</span> in 3 steps</h2>
+    <p class="section-sub">No design skills needed. No complicated forms. Just magic.</p>
+  </div>
+  <div class="how-grid reveal">
+    <div class="how-card">
+      <div class="how-num">01</div>
+      <div class="how-icon">🎨</div>
+      <h3>Choose a theme</h3>
+      <p>Pick from 22 beautiful themes — Early Education, Adventure, Indian Culture, Special Occasions, and more. Every theme is a complete 26-page story in English and Telugu.</p>
+      <div class="how-arrow">→</div>
+    </div>
+    <div class="how-card">
+      <div class="how-num">02</div>
+      <div class="how-icon">📸</div>
+      <h3>Add your child's details</h3>
+      <p>Enter your child's name (in English and Telugu optionally) and upload one clear photo. Our AI will place your child as the hero of every single page.</p>
+      <div class="how-arrow">→</div>
+    </div>
+    <div class="how-card">
+      <div class="how-num">03</div>
+      <div class="how-icon">📦</div>
+      <h3>We print &amp; deliver</h3>
+      <p>Your personalised, printed storybook — with your child's face, name and story — is delivered to your home in 5–7 days. A gift they will treasure forever.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── THEMES ─────────────────────────────────────────────────── -->
+<section class="themes-section" id="themes">
+  <div class="section-header reveal">
+    <div class="section-label">22 themes</div>
+    <h2 class="section-title">Every story your child <span style="color:var(--gold)">deserves to live</span></h2>
+    <p class="section-sub">From A to Z to Space to Diwali — every theme is built with Indian culture and Telugu language woven in.</p>
+  </div>
+
+  <div class="category-tabs reveal">
+    <div class="cat-tab active" onclick="filterThemes(this,'all')">All 22 themes</div>
+    <div class="cat-tab" onclick="filterThemes(this,'edu')">📚 Early Education</div>
+    <div class="cat-tab" onclick="filterThemes(this,'adventure')">🚀 Adventure</div>
+    <div class="cat-tab" onclick="filterThemes(this,'india')">🇮🇳 India Culture</div>
+    <div class="cat-tab" onclick="filterThemes(this,'occasion')">🎉 Special Occasions</div>
+  </div>
+
+  <div class="themes-grid" id="themesGrid">
+    <!-- Early Education -->
+    <div class="theme-card" data-cat="edu" onclick="location.href='/themes/01-alphabets'">
+      <div class="theme-card-inner" style="background:linear-gradient(135deg,#1A237E,#3C3489)">
+        <div class="theme-emoji">🔤</div>
+        <div class="theme-name">Alphabets</div>
+        <div class="theme-te telugu">అక్షరమాల</div>
+        <div class="theme-age">Ages 2–6 · 37 pages</div>
+      </div>
+    </div>
+    <div class="theme-card" data-cat="edu" onclick="location.href='/themes/02-numbers'">
+      <div class="theme-card-inner" style="background:linear-gradient(135deg,#004D40,#00695C)">
+        <div class="theme-emoji">🔢</div>
+        <div class="theme-name">Numbers</div>
+        <div class="theme-te telugu">సంఖ్యలు</div>
+        <div class="theme-age">Ages 2–7 · 31 pages</div>
+      </div>
+    </div>
+    <div class="theme-card" data-cat="edu" onclick="location.href='/themes/03-shapes'">
+      <div class="theme-card-inner" style="background:linear-gradient(135deg,#BF360C,#D84315)">
+        <div class="theme-emoji">🔷</div>
+        <div class="theme-name">Shapes</div>
+        <div class="theme-te telugu">ఆకారాలు</div>
+        <div class="theme-age">Ages 2–6 · 26 pages</div>
+      </div>
+    </div>
+    <div class="theme-card" data-cat="edu" onclick="location.href='/themes/04-colors'">
+      <div class="theme-card-inner" style="background:linear-gradient(135deg,#C62828,#FF7043)">
+        <div class="theme-emoji">🎨</div>
+        <div class="theme-name">Colors</div>
+        <div class="theme-te telugu">రంగులు</div>
+        <div class="theme-age">Ages 2–6 · 26 pages</div>
+      </div>
+    </div>
+    <div class="theme-card" data-cat="edu" onclick="location.href='/themes/05-opposites'">
+      <div class="theme-card-inner" style="background:linear-gradient(135deg,#0D1B3E,#3C3489)">
+        <div class="theme-emoji">↔️</div>
+        <div class="theme-name">Opposites</div>
+        <div class="theme-te telugu">వ్యతిరేకాలు</div>
+        <div class="theme-age">Ages 3–7 · 26 pages</div>
+      </div>
+    </div>
+    <div class="theme-card" data-cat="edu" onclick="location.href='/themes/06-nature'">
+      <div class="theme-card-inner" style="background:linear-gradient(135deg,#1B5E20,#2E7D32)">
+        <div class="theme-emoji">🌿</div>
+        <div class="theme-name">Nature</div>
+        <div class="theme-te telugu">ప్రకృతి</div>
+        <div class="theme-age">Ages 3–8 · 26 pages</div>
+      </div>
+    </div>
+    <!-- Adventure -->
+    <div class="theme-card" data-cat="adventure" onclick="location.href='/themes/07-space'">
+      <div class="theme-card-inner" style="background:linear-gradient(135deg,#07091A,#0D1B3E)">
+        <div class="theme-emoji">🚀</div>
+        <div class="theme-name">Space</div>
+        <div class="theme-te telugu">అంతరిక్షం</div>
+        <div class="theme-age">Ages 4–8 · 26 pages</div>
+      </div>
+    </div>
+    <div class="theme-card" data-cat="adventure" onclick="location.href='/themes/08-superhero'">
+      <div class="theme-card-inner" style="background:linear-gradient(135deg,#0A0015,#4A0070)">
+        <div class="theme-emoji">🦸</div>
+        <div class="theme-name">Superhero</div>
+        <div class="theme-te telugu">సూపర్ హీరో</div>
+        <div class="theme-age">Ages 4–8 · 26 pages</div>
+      </div>
+    </div>
+    <div class="theme-card" data-cat="adventure" onclick="location.href='/themes/09-fairytale'">
+      <div class="theme-card-inner" style="background:linear-gradient(135deg,#1A0A2E,#6A1B9A)">
+        <div class="theme-emoji">👑</div>
+        <div class="theme-name">Fairytale</div>
+        <div class="theme-te telugu">అద్భుత కథ</div>
+        <div class="theme-age">Ages 3–7 · 26 pages</div>
+      </div>
+    </div>
+    <div class="theme-card" data-cat="adventure" onclick="location.href='/themes/10-safari'">
+      <div class="theme-card-inner" style="background:linear-gradient(135deg,#0D1F0A,#1E3A10)">
+        <div class="theme-emoji">🐯</div>
+        <div class="theme-name">Animal Safari</div>
+        <div class="theme-te telugu">జంతు సఫారీ</div>
+        <div class="theme-age">Ages 3–8 · 26 pages</div>
+      </div>
+    </div>
+    <!-- India Culture -->
+    <div class="theme-card" data-cat="india" onclick="location.href='/themes/13-mythology'">
+      <div class="theme-card-inner" style="background:linear-gradient(135deg,#4A0020,#B71C1C)">
+        <div class="theme-emoji">🕉️</div>
+        <div class="theme-name">Indian Mythology</div>
+        <div class="theme-te telugu">పురాణాలు</div>
+        <div class="theme-age">Ages 4–8 · 26 pages</div>
+      </div>
+    </div>
+    <div class="theme-card" data-cat="india" onclick="location.href='/themes/14-festivals'">
+      <div class="theme-card-inner" style="background:linear-gradient(135deg,#FF6B35,#FFD700)">
+        <div class="theme-emoji">🪔</div>
+        <div class="theme-name">Festivals</div>
+        <div class="theme-te telugu">పండుగలు</div>
+        <div class="theme-age">Ages 3–8 · 26 pages</div>
+      </div>
+    </div>
+    <div class="theme-card" data-cat="india" onclick="location.href='/themes/15-telugu'">
+      <div class="theme-card-inner" style="background:linear-gradient(135deg,#1A237E,#283593)" style="border:2px solid var(--gold)!important">
+        <div class="theme-emoji">అ</div>
+        <div class="theme-name">Telugu Script ⭐</div>
+        <div class="theme-te telugu">తెలుగు అక్షరాలు</div>
+        <div class="theme-age">Ages 3–8 · 26 pages</div>
+      </div>
+    </div>
+    <div class="theme-card" data-cat="india" onclick="location.href='/themes/16-food'">
+      <div class="theme-card-inner" style="background:linear-gradient(135deg,#E65100,#FF8F00)">
+        <div class="theme-emoji">🍛</div>
+        <div class="theme-name">Indian Food</div>
+        <div class="theme-te telugu">భారతీయ ఆహారం</div>
+        <div class="theme-age">Ages 3–8 · 26 pages</div>
+      </div>
+    </div>
+    <div class="theme-card" data-cat="india" onclick="location.href='/themes/17-animals'">
+      <div class="theme-card-inner" style="background:linear-gradient(135deg,#0D1F0A,#1B5E20)">
+        <div class="theme-emoji">🐘</div>
+        <div class="theme-name">Indian Animals</div>
+        <div class="theme-te telugu">భారతీయ జంతువులు</div>
+        <div class="theme-age">Ages 3–8 · 26 pages</div>
+      </div>
+    </div>
+    <!-- Special Occasions -->
+    <div class="theme-card" data-cat="occasion" onclick="location.href='/themes/18-birthday'">
+      <div class="theme-card-inner" style="background:linear-gradient(135deg,#F57F17,#FF6B35)">
+        <div class="theme-emoji">🎂</div>
+        <div class="theme-name">Birthday</div>
+        <div class="theme-te telugu">పుట్టినరోజు</div>
+        <div class="theme-age">Ages 5–6 · 26 pages</div>
+      </div>
+    </div>
+    <div class="theme-card" data-cat="occasion" onclick="location.href='/themes/19-sibling'">
+      <div class="theme-card-inner" style="background:linear-gradient(135deg,#0A1628,#0288D1)">
+        <div class="theme-emoji">👶</div>
+        <div class="theme-name">New Sibling</div>
+        <div class="theme-te telugu">కొత్త చెల్లి/తమ్ముడు</div>
+        <div class="theme-age">Ages 3–7 · 26 pages</div>
+      </div>
+    </div>
+    <div class="theme-card" data-cat="occasion" onclick="location.href='/themes/20-school'">
+      <div class="theme-card-inner" style="background:linear-gradient(135deg,#0A1220,#F57F17)">
+        <div class="theme-emoji">🎒</div>
+        <div class="theme-name">First Day of School</div>
+        <div class="theme-te telugu">పాఠశాల మొదటి రోజు</div>
+        <div class="theme-age">Ages 3–5 · 26 pages</div>
+      </div>
+    </div>
+    <div class="theme-card" data-cat="occasion" onclick="location.href='/themes/21-graduation'">
+      <div class="theme-card-inner" style="background:linear-gradient(135deg,#120A20,#6A1B9A)">
+        <div class="theme-emoji">🎓</div>
+        <div class="theme-name">Graduation</div>
+        <div class="theme-te telugu">పదోన్నతి</div>
+        <div class="theme-age">Ages 4–6 · 26 pages</div>
+      </div>
+    </div>
+    <div class="theme-card" data-cat="occasion" onclick="location.href='/themes/22-trip'">
+      <div class="theme-card-inner" style="background:linear-gradient(135deg,#0C1A10,#00695C)">
+        <div class="theme-emoji">✈️</div>
+        <div class="theme-name">Family Trip</div>
+        <div class="theme-te telugu">కుటుంబ యాత్ర</div>
+        <div class="theme-age">Ages 3–8 · 26 pages</div>
+      </div>
+    </div>
+    <div class="theme-card" data-cat="edu" onclick="location.href='/themes/11-values'">
+      <div class="theme-card-inner" style="background:linear-gradient(135deg,#0A2E26,#0F6E56)">
+        <div class="theme-emoji">❤️</div>
+        <div class="theme-name">Values &amp; Morals</div>
+        <div class="theme-te telugu">విలువలు</div>
+        <div class="theme-age">Ages 4–8 · 26 pages</div>
+      </div>
+    </div>
+    <div class="theme-card" data-cat="edu" onclick="location.href='/themes/12-careers'">
+      <div class="theme-card-inner" style="background:linear-gradient(135deg,#1A1200,#F57F17)">
+        <div class="theme-emoji">👨‍🚀</div>
+        <div class="theme-name">Dream Careers</div>
+        <div class="theme-te telugu">కల వృత్తులు</div>
+        <div class="theme-age">Ages 4–8 · 26 pages</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="themes-cta reveal">
+    <a href="/themes" class="btn-outline-white">Browse all 22 themes →</a>
+  </div>
+</section>
+
+<!-- ── WHY MYSTORYBOOK ────────────────────────────────────────── -->
+<section class="why-section" id="why">
+  <div class="why-grid">
+    <div class="why-left reveal">
+      <div class="section-label">Why MyStoryBook</div>
+      <h2 class="section-title">Built for <span class="accent">Indian</span> children, by heart</h2>
+      <p class="section-sub">Not just a personalised book — the only one that speaks your child's language, tells stories from your culture, and makes them the hero.</p>
+      <div class="why-points">
+        <div class="why-point">
+          <div class="why-icon wi-saffron">🌍</div>
+          <div>
+            <h4>Telugu + English, every page</h4>
+            <p>Every page has a Telugu sentence strip alongside English. Your child learns both languages while living the story. The only personalised storybook in India that does this.</p>
+          </div>
+        </div>
+        <div class="why-point">
+          <div class="why-icon wi-teal">🇮🇳</div>
+          <div>
+            <h4>Indian culture woven in</h4>
+            <p>Idli, Diwali, Namaste, Mango, Peacock, Charminar — every book uses Indian objects, festivals, and locations. No translated Western books here.</p>
+          </div>
+        </div>
+        <div class="why-point">
+          <div class="why-icon wi-gold">📸</div>
+          <div>
+            <h4>Your child's face in every scene</h4>
+            <p>Our AI composites your child's photo into every page of the book. They don't just read the story — they ARE the hero, from cover to cover.</p>
+          </div>
+        </div>
+        <div class="why-point">
+          <div class="why-icon wi-saffron">🎁</div>
+          <div>
+            <h4>The gift that lasts a lifetime</h4>
+            <p>Parents keep these books for decades. Grandparents gift them at every milestone. Unlike toys that break, this book grows with your child.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="why-right reveal reveal-delay-2">
+      <div class="proof-card">
+        <div class="proof-top">
+          <div class="proof-num">22</div>
+          <div class="proof-label">Unique themes<span>From Alphabets to Family Trip</span></div>
+        </div>
+        <div class="proof-bar"><div class="proof-fill" style="width:100%"></div></div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-top">
+          <div class="proof-num">574</div>
+          <div class="proof-label">Pages designed<span>Every page hand-crafted</span></div>
+        </div>
+        <div class="proof-bar"><div class="proof-fill" style="width:88%"></div></div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-top">
+          <div class="proof-num">2</div>
+          <div class="proof-label">Languages every page<span>English + Telugu</span></div>
+        </div>
+        <div class="proof-bar"><div class="proof-fill" style="width:75%"></div></div>
+      </div>
+      <div class="moat-badge">
+        <h4>🏆 India's only Telugu-English personalised storybook</h4>
+        <p>No global competitor — Wonderbly, My 1st Years, Hooray Heroes — offers Telugu script learning or Telugu sentence strips. This is our strongest moat.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── BOOK PREVIEW ───────────────────────────────────────────── -->
+<section class="preview-section">
+  <div class="section-header reveal">
+    <div class="section-label" style="color:var(--gold)">Inside the book</div>
+    <h2 class="section-title">26 pages of pure wonder</h2>
+    <p class="section-sub">Every book has the same beautiful structure — front cover, dedication, intro, story chapters, 8 activities, celebration, and back cover.</p>
+  </div>
+  <div class="pages-showcase reveal">
+    <div class="page-thumb"><div class="page-thumb-inner" style="background:linear-gradient(135deg,#1A237E,#3C3489)"><div class="pt-emoji">📖</div><div class="pt-label">Front Cover</div><div class="pt-sub">Child's name + theme</div></div><div class="page-strip-en">[Name]'s Big Adventure!</div><div class="page-strip-te telugu">మీ పేరు అన్వేషణ!</div></div>
+    <div class="page-thumb"><div class="page-thumb-inner" style="background:linear-gradient(135deg,#0A2E26,#0F6E56)"><div class="pt-emoji">💌</div><div class="pt-label">Dedication</div><div class="pt-sub">Gifter's message</div></div><div class="page-strip-en">This book belongs to [Name]</div><div class="page-strip-te telugu">ఈ పుస్తకం [పేరు] కి చెందింది</div></div>
+    <div class="page-thumb"><div class="page-thumb-inner" style="background:linear-gradient(135deg,#BF360C,#E64A19)"><div class="pt-emoji">👤</div><div class="pt-label">Intro Page</div><div class="pt-sub">Child's portrait</div></div><div class="page-strip-en">Meet [Name] — today's hero!</div><div class="page-strip-te telugu">[పేరు] ని కలవండి — ఈ రోజు హీరో!</div></div>
+    <div class="page-thumb"><div class="page-thumb-inner" style="background:linear-gradient(135deg,#07091A,#0D1B3E)"><div class="pt-emoji">🚀</div><div class="pt-label">Story Page</div><div class="pt-sub">Chapter 1 of 12</div></div><div class="page-strip-en">[Name] blasted off into space!</div><div class="page-strip-te telugu">[పేరు] అంతరిక్షంలోకి వెళ్ళారు!</div></div>
+    <div class="page-thumb"><div class="page-thumb-inner" style="background:linear-gradient(135deg,#F57F17,#FF8F00)"><div class="pt-emoji">✏️</div><div class="pt-label">Activity Page</div><div class="pt-sub">8 fun activities</div></div><div class="page-strip-en">[Name] draws the planet!</div><div class="page-strip-te telugu">[పేరు] గ్రహాన్ని గీస్తారు!</div></div>
+    <div class="page-thumb"><div class="page-thumb-inner" style="background:linear-gradient(135deg,#4A0020,#C62828)"><div class="pt-emoji">🎉</div><div class="pt-label">Celebration</div><div class="pt-sub">The big finish</div></div><div class="page-strip-en">[Name] is a SPACE HERO!</div><div class="page-strip-te telugu">[పేరు] అంతరిక్ష వీరుడు!</div></div>
+    <div class="page-thumb"><div class="page-thumb-inner" style="background:linear-gradient(135deg,#1B5E20,#2E7D32)"><div class="pt-emoji">📋</div><div class="pt-label">Recap Page</div><div class="pt-sub">All 12 chapters</div></div><div class="page-strip-en">Everything [Name] discovered!</div><div class="page-strip-te telugu">[పేరు] కనుగొన్న అన్నీ!</div></div>
+    <div class="page-thumb"><div class="page-thumb-inner" style="background:linear-gradient(135deg,#0A1628,#132236)"><div class="pt-emoji">⭐</div><div class="pt-label">Back Cover</div><div class="pt-sub">A keepsake forever</div></div><div class="page-strip-en">MyStoryBook — Made with love in India</div><div class="page-strip-te telugu">మీ కథ · మీ పేరు · మీ సాహసం</div></div>
+  </div>
+</section>
+
+<!-- ── TESTIMONIALS ───────────────────────────────────────────── -->
+<section class="testimonials" id="reviews">
+  <div class="section-header reveal">
+    <div class="section-label">What parents say</div>
+    <h2 class="section-title">Stories that <span class="accent">families treasure</span></h2>
+    <p class="section-sub">From Hyderabad to Bengaluru — parents love seeing their children light up.</p>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card reveal">
+      <div class="stars">★★★★★</div>
+      <p class="testi-text">"My daughter's face when she saw herself as the space astronaut — I cried! The Telugu sentences on every page made my mother-in-law so happy. We've read it 50 times already."</p>
+      <div class="testi-author">
+        <div class="testi-avatar" style="background:linear-gradient(135deg,#FF6B35,#FF8C00)">P</div>
+        <div><div class="testi-name">Priya Reddy</div><div class="testi-role">Mother of 4-year-old · Hyderabad</div></div>
+      </div>
+    </div>
+    <div class="testi-card reveal reveal-delay-2">
+      <div class="stars">★★★★★</div>
+      <p class="testi-text">"Ordered the Telugu Script book for my son — he learned 12 vowels in one week! The combination of his photo and Telugu letters made it his favourite book. Absolutely brilliant idea."</p>
+      <div class="testi-author">
+        <div class="testi-avatar" style="background:linear-gradient(135deg,#0F6E56,#1D9E75)">R</div>
+        <div><div class="testi-name">Ravi Kumar</div><div class="testi-role">Father of 5-year-old · Visakhapatnam</div></div>
+      </div>
+    </div>
+    <div class="testi-card reveal reveal-delay-4">
+      <div class="stars">★★★★★</div>
+      <p class="testi-text">"Gifted the Graduation book for my nephew's KG passing. 'Thatha's Tears' page — my father-in-law actually got emotional. Best gift I've ever given for a child's milestone. Ordering more."</p>
+      <div class="testi-author">
+        <div class="testi-avatar" style="background:linear-gradient(135deg,#6A1B9A,#9C27B0)">S</div>
+        <div><div class="testi-name">Sushma Devi</div><div class="testi-role">Aunt · Bengaluru</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PRICING ────────────────────────────────────────────────── -->
+<section class="pricing" id="pricing">
+  <div class="section-header reveal">
+    <div class="section-label">Simple pricing</div>
+    <h2 class="section-title">A keepsake for <span class="accent">every budget</span></h2>
+    <p class="section-sub">One price per book. No subscriptions. No hidden fees. Free delivery on orders above ₹999.</p>
+  </div>
+  <div class="pricing-grid reveal">
+    <div class="price-card">
+      <div class="price-title">Single Book</div>
+      <div class="price-desc">Perfect for one special child</div>
+      <div class="price-amount"><span class="price-rs">₹</span><span class="price-num">799</span></div>
+      <div class="price-per">per book · 5–7 day delivery</div>
+      <ul class="price-features">
+        <li>26 personalised pages</li>
+        <li>Child's photo on every page</li>
+        <li>English + Telugu text</li>
+        <li>Choose any 1 theme</li>
+        <li>A5 landscape printed book</li>
+        <li>Gifter's message included</li>
+      </ul>
+      <a href="/themes" class="btn-price btn-price-secondary">Choose a theme</a>
+    </div>
+    <div class="price-card featured">
+      <div class="price-title">Bundle of 2</div>
+      <div class="price-desc">Great for siblings or gifts</div>
+      <div class="price-original">₹1,598</div>
+      <div class="price-amount"><span class="price-rs">₹</span><span class="price-num">1,399</span></div>
+      <div class="price-per">for 2 books · saves ₹199</div>
+      <div class="price-save">Save ₹199 · Best value</div>
+      <ul class="price-features">
+        <li>2 × 26 personalised pages</li>
+        <li>Different themes allowed</li>
+        <li>Different child names &amp; photos</li>
+        <li>English + Telugu both books</li>
+        <li>Priority printing queue</li>
+        <li>Free gift wrapping</li>
+      </ul>
+      <a href="/themes" class="btn-price btn-price-primary">Choose 2 themes</a>
+    </div>
+    <div class="price-card">
+      <div class="price-title">Bundle of 3</div>
+      <div class="price-desc">Family set or gift collection</div>
+      <div class="price-original">₹2,397</div>
+      <div class="price-amount"><span class="price-rs">₹</span><span class="price-num">1,899</span></div>
+      <div class="price-per">for 3 books · saves ₹498</div>
+      <div class="price-save">Save ₹498 · Maximum savings</div>
+      <ul class="price-features">
+        <li>3 × 26 personalised pages</li>
+        <li>Mix any themes &amp; children</li>
+        <li>Ideal for gift sets</li>
+        <li>Priority printing queue</li>
+        <li>Free gift wrapping all 3</li>
+        <li>Free express delivery</li>
+      </ul>
+      <a href="/themes" class="btn-price btn-price-secondary">Choose 3 themes</a>
+    </div>
+  </div>
+  <div class="price-addon reveal">
+    <div class="addon-title">✨ Add-ons available at checkout</div>
+    <div class="addon-item">🎁 Gift wrapping &amp; ribbon <span class="addon-price">₹99</span></div>
+    <div class="addon-item">⚡ Express delivery (2–3 days) <span class="addon-price">₹149</span></div>
+    <div class="addon-item">🖼️ A3 recap poster print <span class="addon-price">₹99</span></div>
+    <div class="addon-item">📦 Free standard delivery <span class="addon-price">₹0</span></div>
+  </div>
+</section>
+
+<!-- ── FAQ ────────────────────────────────────────────────────── -->
+<section class="faq">
+  <div class="section-header reveal">
+    <div class="section-label">FAQ</div>
+    <h2 class="section-title">Questions <span class="accent">answered</span></h2>
+  </div>
+  <div class="faq-list reveal">
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)"><span>What kind of photo should I upload?</span><div class="faq-toggle">+</div></div>
+      <div class="faq-a">A clear, front-facing photo of your child's face works best — good lighting, no heavy shadows. A simple phone photo is perfect. Our AI will composite your child's face into every page of the book. Avoid group photos or photos where the face is partially hidden.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)"><span>Can I write the child's name in Telugu?</span><div class="faq-toggle">+</div></div>
+      <div class="faq-a">Yes! At checkout you can enter the child's name in both English and Telugu. The English name appears on every page header, and the Telugu name is optionally shown in the Telugu sentence strip at the bottom. If you skip the Telugu name, we use the English name everywhere.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)"><span>How long does delivery take?</span><div class="faq-toggle">+</div></div>
+      <div class="faq-a">Standard delivery: 5–7 working days across India. Express delivery (add-on): 2–3 working days. We currently deliver across all major Indian cities. After your order is placed, you will receive a tracking link via WhatsApp/SMS.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)"><span>What is the book format and quality?</span><div class="faq-toggle">+</div></div>
+      <div class="faq-a">All books are printed in A5 landscape format (148mm × 210mm) — perfect for small hands. We use high-quality 170gsm matte paper for pages and a laminated cover. Each book is 26 pages (some themes have more), saddle-stitched and durable for young readers.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)"><span>Can I add a personal message from me to the child?</span><div class="faq-toggle">+</div></div>
+      <div class="faq-a">Absolutely — this is one of the most loved features. At checkout there is a "Gifter's message" field where you can write a personal message (up to 120 characters) from you to the child. This message appears on the Dedication page (page 2 of every book).</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)"><span>Do you deliver outside India?</span><div class="faq-toggle">+</div></div>
+      <div class="faq-a">Currently we deliver within India only. International delivery (NRI families in the US, UK, UAE, Singapore, Australia) is coming in Phase 2. Sign up for our newsletter to be notified when international shipping launches.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA BANNER ─────────────────────────────────────────────── -->
+<section class="cta-banner">
+  <h2>Start your child's story today</h2>
+  <p>22 themes · English + Telugu · Printed &amp; delivered in India · From ₹799</p>
+  <a href="/themes" class="btn-white">Create a Book ✨</a>
+  <p class="cta-telugu telugu">మీ పిల్లలే ప్రతి కథలో హీరో — ఇప్పుడే మొదలు పెట్టండి!</p>
+</section>
+
+<!-- ── FOOTER ─────────────────────────────────────────────────── -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="nav-logo">
+        <div class="logo-icon">📖</div>
+        <span class="logo-text">My<span>Story</span>Book</span>
+      </div>
+      <p>India's first bilingual personalised storybook platform. Every child deserves to be the hero of their own story — in English and Telugu.</p>
+      <p class="telugu" style="font-size:12px;color:rgba(250,199,117,0.5);margin-top:8px">మీ పిల్లలే హీరో · Your child is the hero</p>
+      <div class="footer-social">
+        <a class="social-btn" href="#">f</a>
+        <a class="social-btn" href="#">in</a>
+        <a class="social-btn" href="#">▶</a>
+        <a class="social-btn" href="#">📷</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Themes</h4>
+      <a href="/themes/01-alphabets">Alphabets</a>
+      <a href="/themes/07-space">Space</a>
+      <a href="/themes/13-mythology">Mythology</a>
+      <a href="/themes/14-festivals">Festivals</a>
+      <a href="/themes/15-telugu">Telugu Script ⭐</a>
+      <a href="/themes">All 22 themes →</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="/about">About us</a>
+      <a href="/how-it-works">How it works</a>
+      <a href="/pricing">Pricing</a>
+      <a href="/contact">Contact</a>
+      <a href="/blog">Blog</a>
+    </div>
+    <div class="footer-col">
+      <h4>Support</h4>
+      <a href="/faq">FAQ</a>
+      <a href="/track">Track your order</a>
+      <a href="/returns">Returns policy</a>
+      <a href="/privacy">Privacy policy</a>
+      <a href="/terms">Terms of service</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 MyStoryBook. All rights reserved. Made with ❤️ in Hyderabad, India.</p>
+    <p class="telugu-pride telugu">హైదరాబాద్ నుండి ప్రేమతో తయారు చేయబడింది</p>
+    <div class="made-badge">Powered by <span>GPT-4o</span> &amp; <span>Stability AI</span></div>
+  </div>
+</footer>
+
+<script>
+// Navbar scroll effect
+window.addEventListener('scroll',()=>{
+  const nav=document.getElementById('navbar');
+  if(window.scrollY>60){
+    nav.style.boxShadow='0 4px 24px rgba(10,22,40,0.1)';
+  }else{
+    nav.style.boxShadow='none';
+  }
+});
+
+// Scroll reveal
+const observer=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){e.target.classList.add('visible')}
+  });
+},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+// FAQ toggle
+function toggleFaq(el){
+  const item=el.parentElement;
+  const isOpen=item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+  if(!isOpen)item.classList.add('open');
+}
+
+// Theme filter
+function filterThemes(tab,cat){
+  document.querySelectorAll('.cat-tab').forEach(t=>t.classList.remove('active'));
+  tab.classList.add('active');
+  document.querySelectorAll('.theme-card').forEach(card=>{
+    if(cat==='all'||card.dataset.cat===cat){
+      card.style.display='block';
+    }else{
+      card.style.display='none';
+    }
+  });
+}
+</script>
+</body>
+</html>
